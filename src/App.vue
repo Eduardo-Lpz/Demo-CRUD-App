@@ -1,60 +1,59 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
+  <v-app id="bg-img">
+    <Appbar />
+
+    <v-snackbar
+      v-model="notification.visible"
+      :color="notification.color"
+      multi-line
+      top
+      right
+      :timeout="2000"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+      {{notification.message }}
+      <v-btn color="primary" @click="hideNotification">Cerrar</v-btn>
+    </v-snackbar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <v-dialog v-model="busy.visible" max-width="400" persistent>
+      <v-card>
+        <v-toolbar color="primary" dark>
+          <v-toolbar-title>{{ busy.title }}</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text class="subheading">{{ busy.message }}</v-card-text>
+        <v-card-text>
+          <v-progress-linear :indeterminate="true" color="primary"></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
 
     <v-content>
-      <HelloWorld/>
+      <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Appbar from "@/components/Appbar";
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: 'App',
-
+  name: "App",
   components: {
-    HelloWorld,
+    Appbar
   },
-
-  data: () => ({
-    //
-  }),
+  computed: {
+    ...mapState(["notification", "busy"])
+  },
+  methods: {
+    ...mapMutations(["hideNotification"])
+  }
 };
 </script>
+
+<style>
+#bg-img {
+  background-image: url("https://picsum.photos/1920/1080?random");
+  background-size: cover;
+  overflow: hidden;
+}
+</style>
