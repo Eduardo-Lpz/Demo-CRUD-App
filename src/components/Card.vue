@@ -6,7 +6,7 @@
           <v-card-title class="justify-center">
             <v-img position="center" :src="avatar" max-width="128" max-height="128"></v-img>
           </v-card-title>
-          <v-card-title class="justify-center">{{firstName}} {{lastName}}</v-card-title>
+          <v-card-title class="justify-center"> <router-link :to="{ name: 'details', params: { firstName, lastName, email, avatar } }">{{firstName}} {{lastName}}</router-link></v-card-title>
           <v-card-subtitle class="text-center">{{email}}</v-card-subtitle>
           <v-card-actions>
             <v-spacer></v-spacer>

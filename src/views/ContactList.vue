@@ -3,6 +3,7 @@
     <newUserDataModal acceptText="Add User" :onAccept="addUserData" cancelText="cancel" />
     <v-row>
       <v-col xs="8" sm="6" md="4" lg="3" xl="2" v-for="(item, id) in usersData" :key="id">
+
         <Card
           :firstName="item.userFirstName"
           :lastName="item.userLastName"
@@ -10,6 +11,7 @@
           :avatar="item.userAvatar"
           :onDelete="deleteUserData"
         />
+        
       </v-col>
     </v-row>
     <v-btn fab dark color="primary" fixed right bottom @click="showNewUserDataModal">

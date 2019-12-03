@@ -44,7 +44,7 @@
               <v-text-field
                 clearable
                 append-icon="mdi-email"
-                label="email"
+                label="Email"
                 v-model="emailGetSet"
                 :error-messages="errorsEmail"
                 @blur="$v.newUserData.userEmail.$touch()"

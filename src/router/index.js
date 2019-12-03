@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ContacList from '../views/ContactList'
+import Details from '../views/Details'
 
 
 Vue.use(VueRouter)
@@ -10,6 +11,12 @@ const routes = [
     path: '/',
     name: 'home',
     component: ContacList
+  },
+  {
+    path: '/details',
+    name: 'details',
+    component: Details,
+    props: true
   },
   {
     path: '*',
